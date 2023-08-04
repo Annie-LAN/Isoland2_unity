@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -10,6 +8,6 @@ public class Item : MonoBehaviour
     {
         InventoryManager.Instance.AddItem(itemName);
         //添加到背包后隐藏物体
-        this.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);        
     }
 }

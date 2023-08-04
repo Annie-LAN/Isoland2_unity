@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +10,8 @@ public class InventoryManager : Singleton<InventoryManager>
         if((!itemList.Contains(itemName)))
         {
             itemList.Add(itemName);
-            //TODO: UI对应显示
+            // UI对应显示            
+            EventHandler.CallUpdateUIEvent(itemData.GetItemDetails(itemName), itemList.Count-1);
         }
     }
 }
