@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObjectManager : MonoBehaviour
 {
     private Dictionary<ItemName, bool> itemAvailableDict = new Dictionary<ItemName, bool>();
+    private Dictionary<string, bool> interactiveStateDict = new Dictionary<string, bool>();
 
     private void OnEnable()
     {
@@ -23,10 +24,19 @@ public class ObjectManager : MonoBehaviour
     private void OnBeforeSceneUnloadEvent()
     {
        foreach(var item in FindObjectsOfType<Item>())
-        {
+       {
             if (!itemAvailableDict.ContainsKey(item.itemName))
                 itemAvailableDict.Add(item.itemName, true);
-        }
+       }
+
+       foreach(var item in FindObjectsOfType<Interactive>())
+       {
+            if (interactiveStateDict.ContainsKey(item.name))            
+                interactiveStateDict[item.name] = item.isDone;           
+            else
+                interactiveStateDict.Add(item.name, item.isDone);
+       }
+
     }
 
     private void OnAfterSceneLoadedEvent()
@@ -37,6 +47,14 @@ public class ObjectManager : MonoBehaviour
                 itemAvailableDict.Add(item.itemName, true);
             else
                 item.gameObject.SetActive(itemAvailableDict[item.itemName]);
+        }
+
+        foreach (var item in FindObjectsOfType<Interactive>())
+        {
+            if (interactiveStateDict.ContainsKey(item.name))
+                item.isDone = interactiveStateDict[item.name];
+            else
+                interactiveStateDict.Add(item.name, item.isDone);
         }
     }
 
