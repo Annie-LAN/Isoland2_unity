@@ -38,5 +38,17 @@ public static class EventHandler
     {
         ChangeItemEvent?.Invoke(index);
     }
+
+    public static event Action<string> ShowDialogueEvent;
+    public static void CallShowDialogueEvent(string dialogue)
+    {
+        ShowDialogueEvent?.Invoke(dialogue);
+    }
+
+    public static event Action<GameState> GameStateChangeEvent;
+    public static void CallGameStateChangeEvent(GameState gameState)
+    {
+        GameStateChangeEvent?.Invoke(gameState);
+    }
 }
 
