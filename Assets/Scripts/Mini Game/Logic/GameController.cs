@@ -42,6 +42,7 @@ public class GameController : Singleton<GameController>
         {
             holder.GetComponent<Collider2D>().enabled = false;
         }
+        EventHandler.CallGamePassEvent(gameData.gameName);
         OnFinish?.Invoke();
     }
     public void ResetGame()
