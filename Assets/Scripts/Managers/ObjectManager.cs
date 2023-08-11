@@ -13,6 +13,7 @@ public class ObjectManager : MonoBehaviour, ISaveable
         EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
         EventHandler.UpdateUIEvent += OnUpdateUIEvent;
         EventHandler.StartNewGameEvent += OnStartNewGameEvent;
+        EventHandler.ItemUsedEvent += OnItemUsedEvent;
     }
 
     private void OnDisable()
@@ -21,6 +22,19 @@ public class ObjectManager : MonoBehaviour, ISaveable
         EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
         EventHandler.UpdateUIEvent -= OnUpdateUIEvent;
         EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
+        EventHandler.ItemUsedEvent -= OnItemUsedEvent;
+    }
+
+    // 修复14数据保存和加载bug：拿到钥匙开启信箱停留在H4场景，回主菜单继续，邮箱显示关闭，而且钥匙也没了。
+    private void OnItemUsedEvent(ItemName name)
+    {
+        foreach (var interactive in FindObjectsOfType<Interactive>())
+        {
+            if (interactiveStateDict.ContainsKey(interactive.name))
+                interactiveStateDict[interactive.name] = interactive.isDone;
+            else
+                interactiveStateDict.Add(interactive.name, interactive.isDone);
+        }
     }
 
     private void Start()

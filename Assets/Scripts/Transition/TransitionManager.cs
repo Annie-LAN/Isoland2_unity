@@ -49,12 +49,12 @@ public class TransitionManager : Singleton<TransitionManager>, ISaveable
     private IEnumerator TransitionToScene(string from, string to)
     {
         yield return Fade(1);
-        if(from != string.Empty)
+        if (from != string.Empty)
         {
             EventHandler.CallBeforeSceneUnloadEvent();
             yield return SceneManager.UnloadSceneAsync(from);
-        }
-        
+        }        
+
         yield return SceneManager.LoadSceneAsync(to, LoadSceneMode.Additive);
 
         // 设置新场景为激活场景

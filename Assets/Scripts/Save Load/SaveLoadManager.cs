@@ -12,8 +12,8 @@ public class SaveLoadManager : Singleton<SaveLoadManager>
 
     protected override void Awake()
     {
-        base.Awake();
-        jsonFolder = Application.persistentDataPath + "/SAVE/";
+        base.Awake();        
+        jsonFolder = Application.dataPath + "/SAVE/";
     }
 
     private void OnEnable()
@@ -52,7 +52,7 @@ public class SaveLoadManager : Singleton<SaveLoadManager>
         var jsonData = JsonConvert.SerializeObject(saveDataDict, Formatting.Indented);
         if(!File.Exists(resultPath))
         {
-            Directory.CreateDirectory(resultPath);
+            Directory.CreateDirectory(jsonFolder);
         }
         File.WriteAllText(resultPath, jsonData);
     }

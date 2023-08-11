@@ -1,0 +1,50 @@
+{
+  "TransitionManager": {
+    "gameWeek": 0,
+    "currentScene": "H2",
+    "miniGameStateDict": null,
+    "itemAvailableDict": null,
+    "interactiveStateDict": null,
+    "itemList": null
+  },
+  "GameManager": {
+    "gameWeek": 1,
+    "currentScene": null,
+    "miniGameStateDict": {},
+    "itemAvailableDict": null,
+    "interactiveStateDict": null,
+    "itemList": null
+  },
+  "InventoryManager": {
+    "gameWeek": 0,
+    "currentScene": null,
+    "miniGameStateDict": null,
+    "itemAvailableDict": null,
+    "interactiveStateDict": null,
+    "itemList": [
+      1
+    ]
+  },
+  "ObjectManager": {
+    "gameWeek": 0,
+    "currentScene": null,
+    "miniGameStateDict": null,
+    "itemAvailableDict": {
+      "Key": false,
+      "Ticket": true
+    },
+    "interactiveStateDict": {
+      "Character": false,
+      "Holder (6)": false,
+      "Reset": false,
+      "Holder (2)": false,
+      "Holder (4)": false,
+      "Holder (3)": false,
+      "Holder (1)": false,
+      "Holder": false,
+      "Holder (5)": false,
+      "MailBox": false
+    },
+    "itemList": null
+  }
+}
