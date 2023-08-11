@@ -9,6 +9,7 @@ public class GameController : Singleton<GameController>
 
     [Header("ÓÎÏ·Êý¾Ý")]
     public GameH2A_SO gameData;
+    public GameH2A_SO[] gameDataArray;
     public GameObject lineParent;
     public LineRenderer linePrefab;
     public Ball ballPrefab;
@@ -26,8 +27,8 @@ public class GameController : Singleton<GameController>
     
     private void Start()
     {
-        DrawLine();
-        CreateBall();
+        //DrawLine();
+        //CreateBall();
     }
     private void OnCheckGameStateEvent()
     {
@@ -84,5 +85,12 @@ public class GameController : Singleton<GameController>
             holderTransforms[i].GetComponent<Holder>().isEmpty = false;
             ball.SetupBall(gameData.GetBallDetails(gameData.startBallOrder[i]));
         }
+    }
+
+    public void SetGameWeekData(int week)
+    {
+        gameData = gameDataArray[week];
+        DrawLine();
+        CreateBall();
     }
 }

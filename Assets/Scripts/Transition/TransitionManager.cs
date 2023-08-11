@@ -15,16 +15,23 @@ public class TransitionManager : Singleton<TransitionManager>
     private void OnEnable()
     {
         EventHandler.GameStateChangeEvent += OnGameStateChangeEvent;
+        EventHandler.StartNewGameEvent += OnStartNewGameEvent;
     }
     private void OnDisable()
     {
         EventHandler.GameStateChangeEvent -= OnGameStateChangeEvent;
+        EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
     }
 
-    private void Start()
+    private void OnStartNewGameEvent(int obj)
     {
-        StartCoroutine(TransitionToScene(string.Empty, startScene));
+        StartCoroutine(TransitionToScene("Menu", startScene));
     }
+
+    //private void Start()
+    //{
+    //    StartCoroutine(TransitionToScene(string.Empty, startScene));
+    //}
     private void OnGameStateChangeEvent(GameState gameState)
     {
         canTransition = gameState == GameState.GamePlay;

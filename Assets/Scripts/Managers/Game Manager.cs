@@ -7,20 +7,30 @@ public class GameManager : MonoBehaviour
 {
     private Dictionary<string, bool> miniGameStateDict = new Dictionary<string, bool>();
 
+    private GameController currentGame;
+    private int gameWeek;
     private void OnEnable()
     {        
         EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
         EventHandler.GamePassEvent += OnGamePassEvent;
+        EventHandler.StartNewGameEvent += OnStartNewGameEvent;
     }
     private void OnDisable()
     {     
         EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
         EventHandler.GamePassEvent -= OnGamePassEvent;
+        EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
+    }
+
+    private void OnStartNewGameEvent(int gameWeek)
+    {
+        this.gameWeek = gameWeek;
+        miniGameStateDict.Clear();
     }
 
     void Start()
     {
-        // SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
         EventHandler.CallGameStateChangeEvent(GameState.GamePlay);
     }
     private void OnAfterSceneLoadedEvent()
@@ -33,6 +43,8 @@ public class GameManager : MonoBehaviour
                 miniGame.UpdateMiniGameState();
             }
         }
+        currentGame = FindObjectOfType<GameController>();
+        currentGame?.SetGameWeekData(gameWeek);
     }
     private void OnGamePassEvent(string gameName)
     {

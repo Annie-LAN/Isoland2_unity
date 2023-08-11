@@ -19,4 +19,11 @@ public class Menu : MonoBehaviour
 
         // 保存游戏进度
     }
+
+    public void StartGameWeek(int gameWeek)
+    {
+        EventHandler.CallStartNewGameEvent(gameWeek);
+    }
+
+
 }
