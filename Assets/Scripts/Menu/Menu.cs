@@ -11,6 +11,7 @@ public class Menu : MonoBehaviour
     public void ContinueGame()
     {
         // 加载游戏进度
+        SaveLoadManager.Instance.Load();
     }
     public void GoBackToMenu()
     {
@@ -18,6 +19,7 @@ public class Menu : MonoBehaviour
         TransitionManager.Instance.Transition(currentScene, "Menu");
 
         // 保存游戏进度
+        SaveLoadManager.Instance.Save();
     }
 
     public void StartGameWeek(int gameWeek)
